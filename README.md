@@ -4,14 +4,16 @@ A grade book built following the C# Fundamentals Course on PluralSight.
 
 ## Commands
 
-Run
+Navigate into `.\GradeBook` and run any of the following commands.
 
-`dotnet run`
-
-Test
+### Test
 
 `dotnet test`
 
-Build
+### Build
 
 `dotnet build`
+
+### Run
+
+`dotnet run`
