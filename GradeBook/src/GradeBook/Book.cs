@@ -11,9 +11,28 @@ namespace GradeBook
             Name = name;
         }
 
+        private void AddLetterGrade(Statistics result)
+        {
+            switch (result.Average)
+            {
+                case var avg when avg >= 90:
+                    result.Letter = 'A';
+                    break;
+                case var avg when avg >= 80:
+                    result.Letter = 'B';
+                    break;
+                case var avg when avg >= 70:
+                    result.Letter = 'C';
+                    break;
+                default:
+                    result.Letter = 'F';
+                    break;
+            }
+        }
+
         public void AddGrade(double grade)
         {
-            if (grade <= 100 && grade >= 0)
+            if (grade >= 0 && grade <= 100)
             {
                 grades.Add(grade);
             }
@@ -39,29 +58,19 @@ namespace GradeBook
 
             result.Average /= grades.Count;
 
-            switch (result.Average)
-            {
-                case var numericGrade when numericGrade >= 90.0:
-                    result.Letter = 'A';
-                    break;
-                case var numericGrade when numericGrade >= 80.0:
-                    result.Letter = 'B';
-                    break;
-                case var numericGrade when numericGrade >= 70.0:
-                    result.Letter = 'C';
-                    break;
-                case var numericGrade when numericGrade >= 60.0:
-                    result.Letter = 'D';
-                    break;
-                default:
-                    result.Letter = 'F';
-                    break;
-            }
+            AddLetterGrade(result);
 
             return result;
         }
 
         public List<double> grades;
-        public string Name;
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public const string CATEGORY = "Science";
     }
 }

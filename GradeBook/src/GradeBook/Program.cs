@@ -9,17 +9,14 @@ namespace GradeBook
         {
             var book = new Book("Dylan's Grade Book");
 
-            var running = true;
-
-            while (running)
+            while (true)
             {
                 Console.WriteLine("Enter a grade or 'q' to quit");
                 var input = Console.ReadLine();
 
                 if (input == "q")
                 {
-                    running = false;
-                    continue;
+                    break;
                 }
 
                 try
@@ -30,21 +27,19 @@ namespace GradeBook
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    throw;
                 }
                 catch (FormatException ex)
                 {
                     Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    Console.WriteLine("**");
+                    throw;
                 }
             }
 
 
             var stats = book.GetStatistics();
 
+            Console.WriteLine(Book.CATEGORY);
+            Console.WriteLine($"For the book named {book.Name}");
             Console.WriteLine($"The lowest grade is {stats.Low}");
             Console.WriteLine($"The highest grade is {stats.High}");
             Console.WriteLine($"The average grade is {stats.Average}");

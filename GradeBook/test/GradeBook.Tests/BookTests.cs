@@ -29,13 +29,9 @@ namespace GradeBook.Tests
         {
             // arrange
             var book = new Book("");
-            book.AddGrade(105.3);
-
-            // act
-            var grades = book.grades;
 
             // assert
-            Assert.Empty(grades);
+            Assert.Throws<ArgumentException>(() => book.AddGrade(105.5));
         }
     }
 }
